@@ -14,7 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
+<<<<<<< HEAD
 //56
+=======
+//ts
+>>>>>>> 7e45b1646a4c4fbd4571d894ff2ef9a6d28a4c71
 package keystore
 
 import (
