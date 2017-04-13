@@ -54,4 +54,16 @@ func TestRingSignAndVerify(t *testing.T) {
 	ret := false
 	ret = crypto.VerifyRingSign(msg, Pub, I, c, r)
 	fmt.Println("check VerifyRingSign", ret)
+
+	//publickey to int
+	outInt := crypto.PublicKeyToInt(Pub...)
+	fmt.Printf("outInt0:\t %x\n", outInt[0].Bytes())
+
+	Tpub := crypto.IntToPublicKey(outInt...)
+	Tpub2 := Tpub
+	fmt.Printf("Tpub:\t %x\n", crypto.FromECDSAPub(Tpub2[0]))
+	//KeyImage to int
+	outInt = crypto.PublicKeyToInt(I)
+	Tpub = crypto.IntToPublicKey(outInt[0])
+
 }

@@ -159,3 +159,27 @@ func VerifyRingSign(M []byte, PublicKeys []*ecdsa.PublicKey, I *ecdsa.PublicKey,
 	}
 	return ret
 }
+
+//PublicKeyToInt for json 把公钥数组点转int数组，(0放x，1放y)
+//PublicKeys[n]数组时，调用 outInt=PublicKeyToInt(PublicKeys...），
+//单个公钥KeyImage时，调用outInt=PublicKeyToInt（KeyImage),    outInt[0]为返回值
+func PublicKeyToInt(PublicKeys ...*ecdsa.PublicKey) []*big.Int {
+	n := len(PublicKeys)
+	outInt := make([]*big.Int, n)
+	for i := 0; i < n; i++ {
+		outInt[i] = new(big.Int)
+		outInt[i].SetBytes(FromECDSAPub(PublicKeys[i]))
+	}
+
+	return outInt
+}
+
+//IntToPublicKey from json 把int数组点转公钥数组点
+func IntToPublicKey(in ...*big.Int) []*ecdsa.PublicKey {
+	n := len(in)
+	PublicKeys := make([]*ecdsa.PublicKey, n)
+	for i := 0; i < n; i++ {
+		PublicKeys[i] = ToECDSAPub(in[i].Bytes())
+	}
+	return PublicKeys
+}

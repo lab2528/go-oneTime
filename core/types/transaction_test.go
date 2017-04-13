@@ -20,6 +20,7 @@ import (
 	"bytes"
 	"crypto/ecdsa"
 	"encoding/json"
+	"fmt"
 	"math/big"
 	"testing"
 
@@ -217,7 +218,7 @@ func TestTransactionJSON(t *testing.T) {
 		if err != nil {
 			t.Errorf("json.Marshal failed: %v", err)
 		}
-
+		fmt.Printf("json:%s\n", data)
 		var parsedTx *Transaction
 		if err := json.Unmarshal(data, &parsedTx); err != nil {
 			t.Errorf("json.Unmarshal failed: %v", err)
